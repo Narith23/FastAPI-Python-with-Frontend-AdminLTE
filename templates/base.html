@@ -11,11 +11,53 @@
       href="/static/plugins/fontawesome-free/css/all.min.css"
     />
   </head>
-  <body class="hold-transition sidebar-mini">
-    <div class="wrapper">{% block content %}{% endblock %}</div>
+  <body id="body" class="hold-transition sidebar-mini">
+    <div class="wrapper">
+      <!-- Navbar -->
+      {% include 'partials/navbar.html' %}
+      <!-- End Navbar -->
+
+      <!-- Main Sidebar Container -->
+      {% include 'partials/sidebar.html' %}
+      <!-- End Main Sidebar Container -->
+
+      {% block content %}{% endblock %}
+    </div>
+
+    <!-- Theme Toggle Button -->
+    <!-- <div class="theme-toggle">
+      <button class="btn btn-primary" id="toggle-theme">
+        <i class="fas fa-adjust"></i> Toggle Theme
+      </button>
+    </div> -->
+
     <!-- AdminLTE JS -->
     <script src="/static/plugins/jquery/jquery.min.js"></script>
     <script src="/static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/static/dist/js/adminlte.min.js"></script>
+
+    <!-- Theme Toggle Logic -->
+    <script>
+      // Check for saved theme in localStorage
+      const savedTheme = localStorage.getItem("theme") || "light";
+
+      // Set initial theme
+      const body = document.getElementById("body");
+
+      if (savedTheme === "dark") {
+        body.classList.add("dark-mode");
+      }
+
+      //   // Toggle theme and save preference
+      //   document.getElementById("toggle-theme").addEventListener("click", () => {
+      //     if (body.classList.contains("dark-mode")) {
+      //       body.classList.remove("dark-mode");
+      //       localStorage.setItem("theme", "light");
+      //     } else {
+      //       body.classList.add("dark-mode");
+      //       localStorage.setItem("theme", "dark");
+      //     }
+      //   });
+    </script>
   </body>
 </html>
